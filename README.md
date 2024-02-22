@@ -1,4 +1,7 @@
-![image](https://github.com/JohnGalinato808/fitjourney/assets/31334240/6c976839-9d79-45da-adc9-6f67ebb172b3)# fit-journey
+![image](https://github.com/JohnGalinato808/fitjourney/assets/31334240/6c976839-9d79-45da-adc9-6f67ebb172b3)
+
+# fit-journey
+
 [![fit-journey](https://github.com/JohnGalinato808/fitjourney/actions/workflows/ci.yml/badge.svg)](https://github.com/JohnGalinato808/fitjourney/actions/workflows/ci.yml)
 
 What is complete so far?
