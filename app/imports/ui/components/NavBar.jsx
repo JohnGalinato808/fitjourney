@@ -2,30 +2,30 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { PencilSquare, BoxArrowRight, PersonFill, PersonPlusFill, PlusSquare } from 'react-bootstrap-icons';
 import { ComponentIDs } from '../utilities/ids';
 
 const NavBar = () => {
-  const { currentUser, loggedIn } = useTracker(() => ({
+  const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
     loggedIn: !!Meteor.user(),
   }), []);
-  const menuStyle = { marginBottom: '0px' };
-  const navbarClassName = loggedIn ? 'bg-black' : 'bg-black';
+  const navStyle = { boxShadow: '0 6px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.2)' };
+
   return (
-    <Navbar expand="lg" style={menuStyle} className={navbarClassName}>
-      <Container className="m-2 py-0">
+    <Navbar expand="lg" style={navStyle}>
+      <div className="navbar-wrapper">
         <Navbar.Brand as={NavLink} to="/" className="align-items-center">
-          <span style={{ fontWeight: 'bold', fontSize: '32px', color: 'white', fontFamily: 'Sarina' }}>Fit Journey </span>
+          <img src="/images/FitJourney_horizontal.png" alt="navbar logo" width="250" />
         </Navbar.Brand>
         <Navbar.Toggle id={ComponentIDs.navBar} />
         <Navbar.Collapse id={ComponentIDs.navBar}>
           <Nav className="me-auto">
             {currentUser ? (
-              <NavDropdown id={ComponentIDs.navBarCivicEngagementItem} title="Journey" style={{ marginRight: '1em' }} className="white-text-dropdown">
-                <NavDropdown.Item as={NavLink} to="/forum">
-                  <Nav.Link id={ComponentIDs.navBarToForum} as={NavLink} to="/forum" key="forum" style={{ color: 'black' }}>Journal</Nav.Link>
+              <NavDropdown id={ComponentIDs.navBarCivicEngagementItem} title="Workout Log" style={{ marginRight: '1em' }}>
+                <NavDropdown.Item as={NavLink} to="/workoutlog">
+                  <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>
                 </NavDropdown.Item>
               </NavDropdown>
             ) : ''}
@@ -69,7 +69,7 @@ const NavBar = () => {
             )}
           </Nav>
         </Navbar.Collapse>
-      </Container>
+      </div>
     </Navbar>
   );
 };

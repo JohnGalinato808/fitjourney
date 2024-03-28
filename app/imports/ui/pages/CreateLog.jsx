@@ -4,13 +4,13 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { AutoForm, TextField, LongTextField, SubmitField, ErrorsField, HiddenField, NumField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { Posts } from '../../api/post/post';
+import { WorkoutLogs } from '../../api/workoutlog/workoutlog';
 import FileField from '../components/FileField';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 
-const bridge = new SimpleSchema2Bridge(Posts.schema);
+const bridge = new SimpleSchema2Bridge(WorkoutLogs.schema);
 
-const AddPost = () => {
+const CreateLog = () => {
   const [imageFile, setImageFile] = useState(null);
   let fRef = null;
   const user = Meteor.user();
@@ -20,7 +20,7 @@ const AddPost = () => {
   };
 
   const submit = (data) => {
-    const { image, ...postData } = data;
+    const { image, ...logContent } = data;
     const hours = parseInt(data.activityDurationHours, 10);
     const minutes = parseInt(data.activityDurationMinutes, 10);
 
@@ -29,18 +29,18 @@ const AddPost = () => {
       return;
     }
 
-    postData.createdAt = new Date();
-    postData.owner = user ? user.username : 'Anonymous';
+    logContent.createdAt = new Date();
+    logContent.owner = user ? user.username : 'Anonymous';
 
     // Insert post function
     // eslint-disable-next-line no-shadow
-    const insertPost = (postData) => {
-      Posts.collection.insert(postData, (error) => {
+    const insertLog = (data) => {
+      WorkoutLogs.collection.insert(data, (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Post added successfully', 'success').then(() => {
-            window.location.href = '/forum';
+          swal('Success', 'Workout Log added successfully', 'success').then(() => {
+            window.location.href = '/workoutlog';
           });
           if (fRef) {
             fRef.reset();
@@ -49,37 +49,56 @@ const AddPost = () => {
       });
     };
 
-    Meteor.call('textCheck', postData.title, (error) => {
-      if (error) {
-        console.error(error);
-        swal('Error', 'Inappropriate Content in Title', 'error');
-        return;
-      }
-      Meteor.call('textCheck', postData.contents, (error1) => {
-        if (error1) {
-          swal('Error', 'Inappropriate Content in Post', 'error');
-          return;
-        }
-        if (imageFile) {
-          const reader = new FileReader();
-          reader.onloadend = function () {
-            const fileData = reader.result;
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        const fileData = reader.result;
 
-            Meteor.call('uploadImage', fileData, (error2, imageUrl) => {
-              if (error2) {
-                swal('Error', 'Failed to upload image.', 'error');
-              } else {
-                postData.image = imageUrl;
-                insertPost(postData);
-              }
-            });
-          };
-          reader.readAsDataURL(imageFile);
-        } else {
-          insertPost(postData);
-        }
-      });
-    });
+        Meteor.call('uploadImage', fileData, (error2, imageUrl) => {
+          if (error2) {
+            swal('Error', 'Failed to upload image.', 'error');
+          } else {
+            logContent.image = imageUrl;
+            insertLog(logContent);
+          }
+        });
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      insertLog(logContent);
+    }
+
+    // Meteor.call('textCheck', postData.title, (error) => {
+    //   if (error) {
+    //     console.error(error);
+    //     swal('Error', 'Inappropriate Content in Title', 'error');
+    //     return;
+    //   }
+    //   Meteor.call('textCheck', postData.contents, (error1) => {
+    //     if (error1) {
+    //       swal('Error', 'Inappropriate Content in Post', 'error');
+    //       return;
+    //     }
+    //     if (imageFile) {
+    //       const reader = new FileReader();
+    //       reader.onloadend = function () {
+    //         const fileData = reader.result;
+
+    //         Meteor.call('uploadImage', fileData, (error2, imageUrl) => {
+    //           if (error2) {
+    //             swal('Error', 'Failed to upload image.', 'error');
+    //           } else {
+    //             postData.image = imageUrl;
+    //             insertPost(postData);
+    //           }
+    //         });
+    //       };
+    //       reader.readAsDataURL(imageFile);
+    //     } else {
+    //       insertPost(postData);
+    //     }
+    //   });
+    // });
   };
 
   return (
@@ -87,7 +106,7 @@ const AddPost = () => {
       <Container className="py-3">
         <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
           <Col xs={5}>
-            <Col className="text-center"><h2>Add Post</h2></Col>
+            <Col className="text-center"><h2>Create Log</h2></Col>
             <AutoForm ref={(ref) => { fRef = ref; }} schema={bridge} onSubmit={submit}>
               <Card style={{ backgroundColor: 'white', border: 'none' }}>
                 <Card.Body>
@@ -95,7 +114,7 @@ const AddPost = () => {
                   <div className="mb-3">
                     <FileField name="image" onChange={handleImageChange} />
                   </div>
-                  <LongTextField id={ComponentIDs.addPostContent} inputClassName="border-dark" name="contents" />
+                  <LongTextField id={ComponentIDs.createLogDescription} inputClassName="border-dark" name="description" />
                   <NumField id={ComponentIDs.addPostActivityDurationHours} name="activityDurationHours" label="Hours Spent" min={0} max={24} />
                   <NumField id={ComponentIDs.addPostActivityDurationMinutes} name="activityDurationMinutes" label="Minutes Spent" min={0} max={59} />
                   <ErrorsField />
@@ -112,4 +131,4 @@ const AddPost = () => {
   );
 };
 
-export default AddPost;
+export default CreateLog;

@@ -1,13 +1,14 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
-class PostsCollection {
+class WorkoutLogCollection {
   constructor() {
-    this.name = 'PostsCollection';
+    this.name = 'WorkoutLogCollection';
     this.collection = new Mongo.Collection(this.name);
     this.schema = new SimpleSchema({
+      date: Date,
       title: String,
-      contents: String,
+      description: String,
       image: { type: String, optional: true },
       createdAt: Date,
       owner: String,
@@ -29,4 +30,4 @@ class PostsCollection {
   }
 }
 
-export const Posts = new PostsCollection();
+export const WorkoutLogs = new WorkoutLogCollection();
