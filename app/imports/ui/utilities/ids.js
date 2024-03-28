@@ -22,6 +22,8 @@ export const ComponentIDs = {
   modCard: 'modCard',
   // Basic navbar
   navBar: 'navBar',
+  // Navbar Logo to landing page
+  logoToLanding: 'logToLanding',
   // If user is signed in - navbar top-right drop-down
   currentUserDropDown: 'currentUserDropDown',
   // If there is NO user logged in.
@@ -43,47 +45,13 @@ export const ComponentIDs = {
   editLocation: 'editLocation',
   editBio: 'editBio',
   submitEdit: 'submitEdit',
-  // Civic Engagement Dop-down Items
-  navBarCivicEngagementItem: 'navBarCivicEngagementItem',
+  // Workout Log Dop-down Items
+  navBarWorkoutLogDropdown: 'navBarWorkoutLogDropdown',
   navBarToWorkoutLog: 'navBarToWorkoutLog',
-  navBarToSurvey: 'navBarToSurvey',
-  navBarToCommunity: 'navBarToCommunity',
-  // Visualize Toolset Navbar Items
-  navBarVisualizeToolsetItem: 'navBarVisualizeToolsetItem',
-  navBarToModel: 'navBarToModel',
-  navBarToDalle3: 'navBarToDalle3',
-  navBarToMapping: 'navBarToMapping',
-  navBarToExternal: 'navBarToExternal',
   // Sign-in Page components
   signInEmail: 'signInEmail',
   signInPass: 'signInPass',
   signInSubmit: 'signInSubmit',
-  // Survey Page components
-  profile: 'profile',
-  // Model Page
-  modelMap: 'modelMap',
-  userModButton: 'userModButton',
-  userModAddButton: 'userModAddButton',
-  // Model Add page
-  addModType: 'addModType',
-  addModCost: 'addModCost',
-  addModDetail: 'addModDetail',
-  addModSubmit: 'addModSubmit',
-  // All survey component IDs
-  survey: 'survey',
-  addSurvey: 'addSurvey',
-  addSurveyContent: 'addSurveyContent',
-  addSurveyOption1: 'addSurveyOption1',
-  addSurveyOption2: 'addSurveyOption2',
-  submitSurvey: 'submitSurvey',
-  // IDs for Dalle3
-  dalle3Text: 'dalle3Text',
-  dalle3Generate: 'dalle3Generate',
-  generatedImage: 'generatedImage',
-  // IDs for mapping page components.
-  iframe: 'iframe',
-  // ID for external website link.
-  externalLink: 'externalLink',
 };
 
 export const PageIDs = {

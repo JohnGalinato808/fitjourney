@@ -17,13 +17,13 @@ const NavBar = () => {
     <Navbar expand="lg" style={navStyle}>
       <div className="navbar-wrapper">
         <Navbar.Brand as={NavLink} to="/" className="align-items-center">
-          <img src="/images/FitJourney_horizontal.png" alt="navbar logo" width="250" />
+          <img id={ComponentIDs.logoToLanding} src="/images/FitJourney_horizontal.png" alt="navbar logo" width="250" />
         </Navbar.Brand>
         <Navbar.Toggle id={ComponentIDs.navBar} />
         <Navbar.Collapse id={ComponentIDs.navBar}>
           <Nav className="me-auto">
             {currentUser ? (
-              <NavDropdown id={ComponentIDs.navBarCivicEngagementItem} title="Workout Log" style={{ marginRight: '1em' }}>
+              <NavDropdown id={ComponentIDs.navBarWorkoutLogDropdown} title="Workout Log" style={{ marginRight: '1em' }}>
                 <NavDropdown.Item as={NavLink} to="/workoutlog">
                   <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>
                 </NavDropdown.Item>
