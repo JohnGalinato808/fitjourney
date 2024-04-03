@@ -22,8 +22,8 @@ const EditLog = ({ logId }) => {
   const user = Meteor.user();
 
   const workoutLog = WorkoutLogs.collection.findOne({ _id: logId });
-  console.log(logId);
-  console.log(workoutLog);
+  console.log(`logId: ${logId}`);
+  console.log(`workoutLog: ${workoutLog}`);
 
   const handleImageChange = (file) => {
     setImageFile(file);

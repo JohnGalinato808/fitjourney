@@ -6,6 +6,8 @@ export const ComponentIDs = {
   createLogTitle: 'createLogTitle',
   createLogDescription: 'createLogDescription',
   createLogSubmit: 'createLogSubmit',
+  // Dashboard Page components
+  dashboard: 'dashboard',
   // Comment on Post IDs
   addComment: 'addComment',
   addCommentText: 'addCommentText',
@@ -94,6 +96,7 @@ export const PageIDs = {
   addSurvey: 'addSurvey',
   communityPage: 'communityPage',
   dalle3: 'dalle3',
+  dashboard: 'dashboard',
   editProfile: 'editProfile',
   external: 'external',
   workoutlog: 'workoutlog',

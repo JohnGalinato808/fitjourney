@@ -22,13 +22,18 @@ const NavBar = () => {
         <Navbar.Toggle id={ComponentIDs.navBar} />
         <Navbar.Collapse id={ComponentIDs.navBar}>
           <Nav className="me-auto">
-            {currentUser ? (
-              <NavDropdown id={ComponentIDs.navBarCivicEngagementItem} title="Workout Log" style={{ marginRight: '1em' }}>
-                <NavDropdown.Item as={NavLink} to="/workoutlog">
-                  <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>
-                </NavDropdown.Item>
-              </NavDropdown>
-            ) : ''}
+            {currentUser ? ([
+              <Nav.Link id={ComponentIDs.navBarToDashboard} as={NavLink} to="/dashboard" key="dashboard" style={{ color: 'black' }}>Dashboard</Nav.Link>,
+              <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>,
+              // <Nav.Item id={ComponentIDs.navBarCivicEngagementItem} title="My Fitness" style={{ marginRight: '1em' }}>
+              //   <Nav.Item as={NavLink} to="/dashboard">
+              //     <Nav.Link id={ComponentIDs.navBarToDashboard} as={NavLink} to="/dashboard" key="dashboard" style={{ color: 'black' }}>Workout Log</Nav.Link>
+              //   </Nav.Item>
+              //   <Nav.Item as={NavLink} to="/workoutlog">
+              //     <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>
+              //   </Nav.Item>
+              // </Nav.Item>
+            ]) : ''}
           </Nav>
 
           <Nav className="justify-content-end">

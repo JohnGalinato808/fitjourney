@@ -45,7 +45,7 @@ const SignIn = () => {
                 <ErrorsField />
                 <SubmitField id={ComponentIDs.signInSubmit} inputClassName="p-2 bg-white border-1 rounded-1 mt-1" />
               </Card.Body>
-              <p style={{ textAlign: 'center' }}>New to Envision Lahaina? <Link style={{ color: 'black' }} to="/signup">Sign Up</Link></p>
+              <p style={{ textAlign: 'center' }}>New to FitJourney? <Link style={{ color: 'black' }} to="/signup">Sign Up</Link></p>
             </Card>
           </AutoForm>
           {error === '' ? (
