@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line no-unused-vars
-import { Meteor } from 'meteor/meteor';
+import { useNavigate } from 'react-router-dom';
 import { Row, Col, Button, Modal, Image } from 'react-bootstrap';
 import swal from 'sweetalert';
 import { WorkoutLogs } from '../../api/workoutlog/workoutlog';
@@ -9,20 +8,20 @@ import { ComponentIDs } from '../utilities/ids';
 
 const DeleteLog = ({ logId }) => {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const workoutLog = WorkoutLogs.collection.findOne({ _id: logId });
-  console.log(workoutLog);
 
-  // const [imageFile, setImageFile] = useState(null);
-  // eslint-disable-next-line no-shadow
   const deleteLog = () => {
     WorkoutLogs.collection.remove({ _id: logId }, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Comment DELETED successfully', 'success');
+        swal('Success', 'Log deleted successfully', 'success').then(() => {
+          navigate('/workoutlog');
+        });
       }
     });
     setShow(false);
@@ -41,18 +40,18 @@ const DeleteLog = ({ logId }) => {
               Date:&nbsp;
             </span>
             <span>
-              {(workoutLog.date instanceof Date ? workoutLog.date : new Date(workoutLog.date)).toLocaleDateString('en-US')}
+              {workoutLog?.date?.toLocaleDateString('en-US')}
             </span>
           </div>
           <Row>
-            <Col xs={12}><Image src={workoutLog.image} style={{ width: '100%' }} /></Col>
+            <Col xs={12}><Image src={workoutLog?.image} style={{ width: '100%' }} /></Col>
           </Row>
           <div>
             <span style={{ fontWeight: 'bold' }}>
               Title:&nbsp;
             </span>
             <span>
-              {workoutLog.title}
+              {workoutLog?.title}
             </span>
           </div>
           <div>
@@ -60,7 +59,7 @@ const DeleteLog = ({ logId }) => {
               Description:&nbsp;
             </span>
             <span>
-              {workoutLog.description}
+              {workoutLog?.description}
             </span>
           </div>
           <div>
@@ -68,8 +67,8 @@ const DeleteLog = ({ logId }) => {
               Duration:&nbsp;
             </span>
             <span>
-              {String(workoutLog.activityDurationHours).padStart(2, '0')}:
-              {String(workoutLog.activityDurationMinutes).padStart(2, '0')}
+              {String(workoutLog?.activityDurationHours).padStart(2, '0')}:
+              {String(workoutLog?.activityDurationMinutes).padStart(2, '0')}
             </span>
           </div>
         </Modal.Body>

@@ -1,25 +1,44 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Col, Container, Row, Modal, Button } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, NumField, TextField } from 'uniforms-bootstrap5';
+import { Modal, Button } from 'react-bootstrap';
+import { AutoForm, ErrorsField, LongTextField, NumField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import SimpleSchema from 'simpl-schema';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { WorkoutLogs } from '../../api/workoutlog/workoutlog';
 import FileField from './FileField';
-import { ComponentIDs, PageIDs } from '../utilities/ids';
+import { PageIDs } from '../utilities/ids';
 
-const bridge = new SimpleSchema2Bridge(WorkoutLogs.schema);
+const bridge = new SimpleSchema2Bridge(
+  new SimpleSchema({
+    date: Date,
+    title: String,
+    description: String,
+    image: { type: String, optional: true },
+    owner: { type: String, optional: true },
+    activityDurationHours: {
+      type: SimpleSchema.Integer,
+      optional: true,
+      min: 0,
+      max: 24,
+    },
+    activityDurationMinutes: {
+      type: SimpleSchema.Integer,
+      optional: true,
+      min: 0,
+      max: 59,
+    },
+  }),
+);
 
 /* Renders the EditContact page for editing a single document. */
 const EditLog = ({ logId }) => {
   const [setImageFile] = useState(null);
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { _id } = useParams();
-  let fRef = null;
-  const user = Meteor.user();
 
   const workoutLog = WorkoutLogs.collection.findOne({ _id: logId });
   console.log(`logId: ${logId}`);
@@ -63,16 +82,15 @@ const EditLog = ({ logId }) => {
 
     logData.createdAt = new Date();
 
-    WorkoutLogs.collection.update(_id, { $set: { image, ...logData } }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Workout Log updated successfully', 'success').then(() => {
-        window.location.href = '/workoutlog';
-        if (fRef) {
-          fRef.reset();
-        }
-      })
-    ));
-    setShow(false);
+    WorkoutLogs.collection.update(logId, { $set: { image, ...logData } }, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', 'Workout Log updated successfully', 'success').then(() => {
+          setShow(false);
+        });
+      }
+    });
   };
 
   return (
@@ -83,28 +101,19 @@ const EditLog = ({ logId }) => {
           <Modal.Title>Edit Workout Log</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Container>
-            <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
-              <Col xs={12}>
-                <AutoForm ref={(ref) => { fRef = ref; }} schema={bridge} onSubmit={submit}>
-                  <Card style={{ backgroundColor: 'white', border: 'none' }}>
-                    <Card.Body>
-                      <TextField id={ComponentIDs.createLogTitle} inputClassName="border-dark" name="title" defaultValue={workoutLog.title} />
-                      <div className="mb-3">
-                        <FileField name="image" onChange={handleImageChange} />
-                      </div>
-                      <LongTextField id={ComponentIDs.createLogDescription} inputClassName="border-dark" name="description" defaultValue={workoutLog.description} />
-                      <NumField id={ComponentIDs.createLogActivityDurationHours} name="activityDurationHours" label="Hours Spent" min={0} max={24} defaultValue={workoutLog.activityDurationHours} />
-                      <NumField id={ComponentIDs.createLogActivityDurationMinutes} name="activityDurationMinutes" label="Minutes Spent" min={0} max={59} defaultValue={workoutLog.activityDurationMinutes} />
-                      <ErrorsField />
-                      <HiddenField name="createdAt" value={new Date()} />
-                      {user ? <HiddenField name="owner" value={user.username} /> : null}
-                    </Card.Body>
-                  </Card>
-                </AutoForm>
-              </Col>
-            </Row>
-          </Container>
+          <AutoForm schema={bridge} onSubmit={submit} model={workoutLog}>
+            <TextField name="date" type="date" />
+            <TextField name="title" />
+            <LongTextField name="description" />
+            <div className="mb-3">
+              <FileField name="image" onChange={handleImageChange} />
+            </div>
+            <TextField name="owner" />
+            <NumField name="activityDurationHours" label="Activity Duration Hours" min={0} max={24} />
+            <NumField name="activityDurationMinutes" label="Activity Duration Minutes" min={0} max={59} />
+            <ErrorsField />
+            <SubmitField value="Submit" />
+          </AutoForm>
           {/* <div>
             <span style={{ fontWeight: 'bold' }}>
               Date:&nbsp;
@@ -142,13 +151,6 @@ const EditLog = ({ logId }) => {
             </span>
           </div> */}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          {/* <SubmitField id={ComponentIDs.addPostSubmit} inputClassName="p-2 bg-white border-1 rounded-1 mt-1" value="Submit" /> */}
-          <Button variant="outline-info" onClick={submit}>Submit</Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );

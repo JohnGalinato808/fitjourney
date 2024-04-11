@@ -7,9 +7,18 @@ class WorkoutLogCollection {
     this.collection = new Mongo.Collection(this.name);
     this.schema = new SimpleSchema({
       date: Date,
-      title: String,
-      description: String,
-      image: { type: String, optional: true },
+      title: {
+        type: String,
+        max: 50,
+      },
+      description: {
+        type: String,
+        max: 3000,
+      },
+      image: {
+        type: String,
+        optional: true,
+      },
       createdAt: Date,
       owner: String,
       activityDurationHours: {
