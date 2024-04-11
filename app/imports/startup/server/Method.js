@@ -10,30 +10,6 @@ cloudinary.config({
 
 Meteor.methods({
   // eslint-disable-next-line meteor/audit-argument-checks
-  async generateImage(prompt) {
-    try {
-      const response = await HTTP.call('POST', 'https://api.openai.com/v1/images/generations', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${'YOUR-KEY-HERE'}`,
-        },
-        data: {
-          model: 'dall-e-3',
-          prompt: prompt,
-          n: 1,
-          size: '1024x1024',
-        },
-      });
-
-      const imageUrl = response.data.data[0].url;
-      return imageUrl;
-    } catch (error) {
-      console.error('Error calling OpenAI:', error);
-      throw new Meteor.Error('api-call-failed', `Failed to call OpenAI API: ${error.message}`);
-    }
-  },
-
-  // eslint-disable-next-line meteor/audit-argument-checks
   async uploadImage(imageData) {
     this.unblock();
 

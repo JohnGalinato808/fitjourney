@@ -14,17 +14,9 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
 import WorkoutLog from '../pages/WorkoutLog';
-import CommunityPage from '../pages/CommunityPage';
-import Dalle3 from '../pages/Dalle3';
-import External from '../pages/External';
 import EditProfile from '../pages/EditProfile';
 import AddProfile from '../pages/AddProfile';
 import CreateLog from '../pages/CreateLog';
-import Survey from '../pages/SurveyPage';
-import AddSurvey from '../pages/AddSurvey';
-import Mapping from '../pages/Mapping';
-import Model from '../pages/Model';
-import AddModCard from '../pages/AddModCard';
 import EditLog from '../pages/EditLog';
 
 const App = () => {
@@ -44,17 +36,9 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/workoutlog" element={<ProtectedRoute><WorkoutLog /></ProtectedRoute>} />
-          <Route path="/survey" element={<ProtectedRoute><Survey /></ProtectedRoute>} />
-          <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
-          <Route path="/mapping" element={<ProtectedRoute><Mapping /></ProtectedRoute>} />
-          <Route path="/dalle3" element={<ProtectedRoute><Dalle3 /></ProtectedRoute>} />
-          <Route path="/external" element={<ProtectedRoute><External /></ProtectedRoute>} />
           <Route path="/editprofile" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
           <Route path="/addprofile" element={<ProtectedRoute><AddProfile /></ProtectedRoute>} />
           <Route path="/createlog" element={<ProtectedRoute><CreateLog /></ProtectedRoute>} />
-          <Route path="/addsurvey" element={<ProtectedRoute><AddSurvey /></ProtectedRoute>} />
-          <Route path="/addmodcard" element={<ProtectedRoute><AddModCard /></ProtectedRoute>} />
-          <Route path="/model" element={<ProtectedRoute><Model /></ProtectedRoute>} />
           <Route path="/editlog/:_id" element={<ProtectedRoute><EditLog /></ProtectedRoute>} />
           <Route path="/admin" element={<AdminProtectedRoute ready={ready}><Landing /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
