@@ -116,6 +116,20 @@
       "activityDurationMinutes": 30
     }
   ],
+  "defaultGoals": [
+    {
+      "status": false,
+      "description": "Goal #1",
+      "deadline": "2023-11-04T00:00:00Z",
+      "owner": "admin@foo.com"
+    },
+    {
+      "status": true,
+      "description": "Goal #2",
+      "deadline": "2023-12-09T00:00:00Z",
+      "owner": "admin@foo.com"
+    }
+  ],
   "defaultProfiles": [
     {
       "firstName": "Zhuocheng",

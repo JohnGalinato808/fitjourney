@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Profiles } from '../../api/profile/profile';
 import { WorkoutLogs } from '../../api/workoutlog/workoutlog';
+import { Goal } from '../../api/goal/goal';
 import { Surveys } from '../../api/survey/survey';
 import { Votes } from '../../api/vote/vote';
 import { ModCards } from '../../api/modcard/modcard';
@@ -26,6 +27,18 @@ if (WorkoutLogs.collection.find().count() === 0) {
   if (Meteor.settings.defaultLogs) {
     console.log('Creating default logs.');
     Meteor.settings.defaultLogs.forEach(data => createLog(data));
+  }
+}
+
+const createGoal = (goal) => {
+  console.log(`  Creating: ${goal.description} (${goal.owner})`);
+  Goal.collection.insert(goal);
+};
+
+if (Goal.collection.find().count() === 0) {
+  if (Meteor.settings.defaultGoals) {
+    console.log('Creating default goals.');
+    Meteor.settings.defaultGoals.forEach(data => createGoal(data));
   }
 }
 

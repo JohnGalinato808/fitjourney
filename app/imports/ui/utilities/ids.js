@@ -20,6 +20,8 @@ export const ComponentIDs = {
   fileField: 'fileField',
   //
   footer: 'footer',
+  // Goals
+  goal: 'goal',
   loadingSpinner: 'loadingSpinner',
   modCard: 'modCard',
   // Basic navbar
