@@ -36,7 +36,13 @@ Before you begin, please ensure you have met the following requirements.
 
 ### Challenges and surprises
 
+Some challenges that were involved in the creation of this website included that for some of us, the previous ICS classes were our only real experience in creating websites, meaning that at the time, security wasn't quite our priority more so than it was just getting the functionality of the site to start working. This means that when it came to focusing on security measures, it was a completely new field to start learning about, and it was a challenge trying to locate flaws in the functions of the site we created when we were used to not worrying about it. Some other difficulties included the huge range of possible security vulnerabilities that were present when it came to user input in the website. With so many possible security exploits that were present, trying to anticipate and patch these possible issues served as a very tedious and time-consuming challenge. Nevertheless, it was an issue that we approached and handled to the best of our ability.
+
+Surprises mostly included looking at how the websites we've been working on are made in context of quality assurance and security, and then realizing just how many security exploits existed in features of the website we didn't even think twice about before. User sessions, user inputs, image submissions, web urls, user logins, and even the ability to simply view posts made by other users all contained security vulnerabilities that could be exploited by malicious actors, and thus trying to anticipate every single one was nearly impossible.
+
 ### Achievements
+
+
 
 ### Disappointments
 
@@ -70,7 +76,7 @@ Wiki Page (https://github.com/JohnGalinato808/fitjourney/wiki)
 - Mai Abe
     - Completed: - Completed Admin Panel page. The page retrieves and displays corresponding roles and ability to toggle the accessibility for each user. Made the Admin Panel page accessible only to admin users. Created toggle button to control accessibility, where it would alert the admin user each time the active/inactive status of a user was changed. The active/inactive status of a user (accessibility) is only modifiable for users with 'user' role. Users with 'admin' role are always active. Once a user was limited accessibility, an error message, 'Your account has been disabled', will be displayed on an attempt to login. 
 - Tiffany Ngo
-    - Completed: Implemented circle graph that shows how much fitness was done each month in a specified year, percentage-wise
+    - Completed: Implemented circle graph that shows how much fitness was done each month in a specified year, with the ability to go back to previous years. It shows only the months that have fitness entries in it, with a legend attached to the pie chart that shows how much time was spent each month exercising both in total time spent and percentage-wise.
 
 
 ========= 4/10/24 Updates ==========
