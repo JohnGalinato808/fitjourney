@@ -46,7 +46,9 @@ Achievements included getting the website's functionality working in a way that 
 
 ### Disappointments
 
-Some disappointments include that the original idea of the website was meant to be a sort of social app that users could add each other on and where they could view each other's profiles so that they could follow each other on their fitness journeys. They could leave comments on each other's fitness posts and it'd serve as a way for each other to get motivation from one another. However, this original plan never panned out, and thus the app became more of a personal app that you could use on your own to track your own fitness goals and see how much you achieved over a period of time. It's a disappointment that the app never reached its full potential, but I suppose that sacrifices must be made in order to meet time constraints. Besides, if one had the time, resources, and motivation, the app could definitely reach its potential if one chose to work on it.
+Some disappointments include that the original idea of the website was meant to be a sort of social app that users could add each other on and where they could view each other's profiles so that they could follow each other on their fitness journeys. They could leave comments on each other's fitness posts and it'd serve as a way for each other to get motivation from one another. However, this original plan never panned out, and thus the app became more of a personal app that you could use on your own to track your own fitness goals and see how much you achieved over a period of time. 
+
+It's a disappointment that the app never reached its full potential, but I suppose that sacrifices must be made in order to meet time constraints. Besides, if one had the time, resources, and motivation, the app could definitely reach its potential if one chose to work on it.
 
 ### Disclaimers/Caveats
 
