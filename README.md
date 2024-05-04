@@ -1,4 +1,4 @@
-# fit-journey
+# FitJourney
 Fit Journey is a web application developed for ICS 427 Software Quality Assurance course at University of Hawaii at Manoa. Our app aims to help users keep or enhance their fitness levels through managing any workout logs. Users are able to create, edit or delete workout logs, and to visualize their workout activities over time. This application was developed utilizing secure coding practices and aims to provide protected environment for our users. For a detailed explanation for our application features, please visit our [wiki page](https://github.com/JohnGalinato808/fitjourney/wiki).
 
 
@@ -42,11 +42,15 @@ Surprises mostly included looking at how the websites we've been working on are 
 
 ### Achievements
 
-
+Achievements included getting the website's functionality working in a way that patched some of the most obvious, glaring security issues in the website. Although it is absolutely certain that we've missed some, and that some of them may be quite obvious to more skilled software developers, to us, who are still learning our way around the skill of developing web software and other applications, this is an achievement in of itself to begin recognizing and addressing possible security issues that may crop up in our software. This is only the beginning of our potential growth in our field, and this should be recognized and acknowledged. 
 
 ### Disappointments
 
+Some disappointments include that the original idea of the website was meant to be a sort of social app that users could add each other on and where they could view each other's profiles so that they could follow each other on their fitness journeys. They could leave comments on each other's fitness posts and it'd serve as a way for each other to get motivation from one another. However, this original plan never panned out, and thus the app became more of a personal app that you could use on your own to track your own fitness goals and see how much you achieved over a period of time. It's a disappointment that the app never reached its full potential, but I suppose that sacrifices must be made in order to meet time constraints. Besides, if one had the time, resources, and motivation, the app could definitely reach its potential if one chose to work on it.
+
 ### Disclaimers/Caveats
+
+Due to the time constraints the software development team had and the limited skill of the team working on it, not all futures could be implemented properly, and there exists many possible security exploits that could be used against users who are using the software. Ongoing maintenance, patches, and updates are not possible, and it is up to the discretion of the user to practice best security measures to protect their information and security, such as using up-to-date and secure passwords and being mindful of where they share personal information. Users should be reminded to use their best security practices. 
 
 ## Links
 
