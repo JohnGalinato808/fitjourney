@@ -27,6 +27,7 @@ import Mapping from '../pages/Mapping';
 import Model from '../pages/Model';
 import AddModCard from '../pages/AddModCard';
 import EditLog from '../pages/EditLog';
+import CreateGoal from '../pages/CreateGoal';
 
 const App = () => {
   const { ready } = useTracker(() => {
@@ -54,6 +55,7 @@ const App = () => {
           <Route path="/editprofile" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
           <Route path="/addprofile" element={<ProtectedRoute><AddProfile /></ProtectedRoute>} />
           <Route path="/createlog" element={<ProtectedRoute><CreateLog /></ProtectedRoute>} />
+          <Route path="/creategoal" element={<ProtectedRoute><CreateGoal /></ProtectedRoute>} />
           <Route path="/addsurvey" element={<ProtectedRoute><AddSurvey /></ProtectedRoute>} />
           <Route path="/addmodcard" element={<ProtectedRoute><AddModCard /></ProtectedRoute>} />
           <Route path="/model" element={<ProtectedRoute><Model /></ProtectedRoute>} />
