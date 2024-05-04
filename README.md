@@ -58,7 +58,7 @@ Due to the time constraints the software development team had and the limited sk
 
 FitJourney Repository (https://github.com/JohnGalinato808/fitjourney)
 
-Final Project Documentation ?
+Final Project Documentation (https://github.com/JohnGalinato808/fitjourney/blob/main/README.md)
 
 Release Version 
 
