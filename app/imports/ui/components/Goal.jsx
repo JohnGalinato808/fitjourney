@@ -59,7 +59,7 @@ const GoalComponent = ({ goal }) => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </td>
-        <td>{deadline}</td>
+        <td>{deadline.toLocaleString()}</td>
         <td><Button>Save</Button></td>
         <td><Button>Delete</Button></td>
       </tr>
