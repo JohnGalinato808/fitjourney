@@ -11,7 +11,7 @@ const GoalComponent = ({ goal }) => {
   const [deadline, setDeadline] = useState(goal ? goal.deadline : '');
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const saveGoal = (e) => {
     e.preventDefault();
     const userId = Meteor.userId(); // Retrieve the current user's ID
     const goalData = {
@@ -29,6 +29,12 @@ const GoalComponent = ({ goal }) => {
       Goal.collection.insert(goalData);
     }
     console.log(goalData);
+  };
+
+  const deleteGoal = () => {
+    Goal.collection.remove(goal._id, () => {
+      swal('Success', 'Goal deleted successfully', 'success');
+    });
   };
 
   // Function to fetch data from database
@@ -62,8 +68,8 @@ const GoalComponent = ({ goal }) => {
           />
         </td>
         <td>{deadline.toLocaleString()}</td>
-        <td><Button onClick={handleSubmit}>Save</Button></td>
-        <td><Button onClick={handleSubmit}>Delete</Button></td>
+        <td><Button onClick={saveGoal} variant="secondary">Save</Button></td>
+        <td><Button onClick={deleteGoal} variant="danger">Delete</Button></td>
       </tr>
     </tbody>
   );
