@@ -42,7 +42,7 @@ const CreateGoal = () => {
       <Container className="py-3">
         <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
           <Col xs={5}>
-            <Col className="text-center"><h2>Create Log</h2></Col>
+            <Col className="text-center"><h2>Create Goal</h2></Col>
             <AutoForm ref={(ref) => { fRef = ref; }} schema={bridge} onSubmit={submit}>
               <Card style={{ backgroundColor: 'white', border: 'none' }}>
                 <Card.Body>
