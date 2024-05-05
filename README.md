@@ -60,7 +60,7 @@ FitJourney Repository (https://github.com/JohnGalinato808/fitjourney)
 
 Final Project Documentation (https://github.com/JohnGalinato808/fitjourney/blob/main/README.md)
 
-Release Version 
+Release Version (https://github.com/JohnGalinato808/fitjourney/releases/tag/Fitness)
 
 Wiki Page (https://github.com/JohnGalinato808/fitjourney/wiki)
 
