@@ -41,8 +41,8 @@ const EditLog = ({ logId }) => {
   const { _id } = useParams();
 
   const workoutLog = WorkoutLogs.collection.findOne({ _id: logId });
-  console.log(`logId: ${logId}`);
-  console.log(`workoutLog: ${workoutLog}`);
+  console.log(logId);
+  console.log(workoutLog);
 
   const handleImageChange = (file) => {
     setImageFile(file);
