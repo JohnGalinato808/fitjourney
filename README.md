@@ -76,7 +76,7 @@ Wiki Page (https://github.com/JohnGalinato808/fitjourney/wiki)
 
 --- **Roles and responsibilities** ---
 - John Galinato
-    - Completed:
+    - Completed: - Assisted with the completion of the Dashboard page. Created EditGoal function for user to edit their self-made goal as well as their goal deadline. In addition, I have created the CreateGoal function which allows users to create new goals that is then added to the database. This function will bring user to a new page where they must input an initial goal completion date with time of day, as well as a description of their goal. Finally, assisted with debugging the Dashboard page in attempt to have the page pull data from the database to be displayed onto the page.
 - Loelle Lam
     - Completed: The goals feature is now fully operational, allowing users to set and track their goals. Users can see goals they created, each goal’s deadline, and mark the goals as completed. I resolved the issue in the goal component that caused the goals page to crash. Users can now edit and delete their goals from within the goals page as well.
 - Mai Abe
