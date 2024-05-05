@@ -1,16 +1,21 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { PencilSquare, BoxArrowRight, PersonFill, PersonPlusFill, PlusSquare } from 'react-bootstrap-icons';
+import { PencilSquare, BoxArrowRight, PersonFill, PersonPlusFill, ShieldLock } from 'react-bootstrap-icons';
 import { ComponentIDs } from '../utilities/ids';
 
 const NavBar = () => {
-  const { currentUser } = useTracker(() => ({
-    currentUser: Meteor.user() ? Meteor.user().username : '',
-    loggedIn: !!Meteor.user(),
-  }), []);
+  const { currentUser, isAdmin } = useTracker(() => {
+    const username = Meteor.user() ? Meteor.user().username : '';
+    const admin = username ? Roles.userIsInRole(Meteor.user()._id, 'admin') : false;
+    return {
+      currentUser: username,
+      isAdmin: admin,
+    };
+  }, []);
   const navStyle = { boxShadow: '0 6px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.2)' };
 
   return (
@@ -23,16 +28,9 @@ const NavBar = () => {
         <Navbar.Collapse id={ComponentIDs.navBar}>
           <Nav className="me-auto">
             {currentUser ? ([
-              <Nav.Link id={ComponentIDs.navBarToDashboard} as={NavLink} to="/dashboard" key="dashboard" style={{ color: 'black' }}>Dashboard</Nav.Link>,
               <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>,
-              // <Nav.Item id={ComponentIDs.navBarCivicEngagementItem} title="My Fitness" style={{ marginRight: '1em' }}>
-              //   <Nav.Item as={NavLink} to="/dashboard">
-              //     <Nav.Link id={ComponentIDs.navBarToDashboard} as={NavLink} to="/dashboard" key="dashboard" style={{ color: 'black' }}>Workout Log</Nav.Link>
-              //   </Nav.Item>
-              //   <Nav.Item as={NavLink} to="/workoutlog">
-              //     <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>
-              //   </Nav.Item>
-              // </Nav.Item>
+              <Nav.Link id={ComponentIDs.navBarToDashboard} as={NavLink} to="/dashboard" key="dashboard" style={{ color: 'black' }}>Goals</Nav.Link>,
+              <Nav.Link as={NavLink} to="/graphs" key="graphs" style={{ color: 'black' }}>Graphs</Nav.Link>,
             ]) : ''}
           </Nav>
 
@@ -52,12 +50,13 @@ const NavBar = () => {
               </NavDropdown>
             ) : (
               <NavDropdown id={ComponentIDs.currentUserDropDown} title={currentUser} className="mx-1 white-text-dropdown">
-                <NavDropdown.Item id={ComponentIDs.navBarAddProfile} as={NavLink} to="/addprofile">
-                  <PlusSquare />
-                  {' '}
-                  Add
-                  Profile
-                </NavDropdown.Item>
+                {isAdmin ? (
+                  <NavDropdown.Item id={ComponentIDs.navBarAdminPanel} as={NavLink} to="/adminpanel">
+                    <ShieldLock />
+                    {' '}
+                    Admin Panel
+                  </NavDropdown.Item>
+                ) : null}
                 <NavDropdown.Item id={ComponentIDs.navBarEditProfile} as={NavLink} to="/editprofile">
                   <PencilSquare />
                   {' '}

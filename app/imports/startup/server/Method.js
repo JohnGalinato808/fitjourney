@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
+import { Roles } from 'meteor/alanning:roles';
 import cloudinary from 'cloudinary';
 
 cloudinary.config({
@@ -70,4 +71,22 @@ Meteor.methods({
       throw new Meteor.Error('moderation-api-call-failed', `Failed to call OpenAI Moderation API: ${error.message}`);
     }
   },
+
+  // eslint-disable-next-line meteor/audit-argument-checks
+  toggleUserActive(userId, isActive) {
+    console.log('===================================== toggleUserActive Called =====================================');
+    if (!this.userId || !Roles.userIsInRole(this.userId, 'admin')) {
+      throw new Meteor.Error('not-authorized', 'You must be an administrator to perform this action.');
+    }
+    try {
+      Meteor.users.update(userId, {
+        $set: { isActive: isActive },
+      });
+      console.log('isActive updated');
+    } catch (error) {
+      console.error('Error calling toggleUserActive:', error);
+      throw new Meteor.Error('moderation-api-call-failed', `Failed to call toggleUserActive: ${error.message}`);
+    }
+  },
+
 });

@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { Profiles } from '../../api/profile/profile';
 import { WorkoutLogs } from '../../api/workoutlog/workoutlog';
 import { Goal } from '../../api/goal/goal';
@@ -55,9 +56,36 @@ Meteor.publish(Surveys.userPublicationName, function () {
   return this.ready();
 });
 
+// Server side: Publish roles for all users
 Meteor.publish(null, function () {
-  if (this.userId) {
-    return Meteor.roleAssignment.find({ 'user._id': this.userId });
+  if (this.userId && Roles.userIsInRole(this.userId, ['admin'])) {
+    return Meteor.roleAssignment.find({});
   }
   return this.ready();
+});
+
+Meteor.publish(WorkoutLogs.userPublicationName, function () {
+  if (!this.userId) {
+    return this.ready();
+  }
+  return WorkoutLogs.collection.find({ owner: Meteor.users.findOne(this.userId).username });
+});
+
+Meteor.publish('allUsersWithRoles', function () {
+  if (!this.userId || !Roles.userIsInRole(this.userId, 'admin')) {
+    // Only publish to logged-in admins
+    return this.ready();
+  }
+  console.log(Meteor.users.find({}, { fields: { roles: 1 } }).fetch());
+
+  const allUsers = Meteor.users.find({}, {
+    fields: {
+      username: 1,
+      emails: 1,
+      role: 1,
+      isActive: 1,
+    },
+  });
+  console.log(allUsers);
+  return allUsers;
 });

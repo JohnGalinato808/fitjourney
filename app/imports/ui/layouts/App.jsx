@@ -11,10 +11,11 @@ import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
 import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
+import AdminPanel from '../pages/AdminPanel';
 import NotAuthorized from '../pages/NotAuthorized';
-import LoadingSpinner from '../components/LoadingSpinner';
 import WorkoutLog from '../pages/WorkoutLog';
 import Dashboard from '../pages/Dashboard';
+import Graphs from '../pages/Graphs';
 import CommunityPage from '../pages/CommunityPage';
 import Dalle3 from '../pages/Dalle3';
 import External from '../pages/External';
@@ -45,8 +46,10 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
+          <Route path="/adminpanel" element={<AdminProtectedRoute ready={ready}><AdminPanel /></AdminProtectedRoute>} />
           <Route path="/workoutlog" element={<ProtectedRoute><WorkoutLog /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/graphs" element={<ProtectedRoute><Graphs /></ProtectedRoute>} />
           <Route path="/survey" element={<ProtectedRoute><Survey /></ProtectedRoute>} />
           <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
           <Route path="/mapping" element={<ProtectedRoute><Mapping /></ProtectedRoute>} />
@@ -73,13 +76,10 @@ const ProtectedRoute = ({ children }) => {
   const isLogged = Meteor.userId() !== null;
   return isLogged ? children : <Navigate to="/signin" />;
 };
-const AdminProtectedRoute = ({ ready, children }) => {
+const AdminProtectedRoute = ({ children }) => {
   const isLogged = Meteor.userId() !== null;
   if (!isLogged) {
     return <Navigate to="/signin" />;
-  }
-  if (!ready) {
-    return <LoadingSpinner />;
   }
   const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
   return (isLogged && isAdmin) ? children : <Navigate to="/notauthorized" />;
@@ -93,6 +93,7 @@ ProtectedRoute.defaultProps = {
 };
 
 AdminProtectedRoute.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   ready: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };

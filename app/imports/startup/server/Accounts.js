@@ -9,13 +9,29 @@ const createUser = (email, password, role) => {
     email: email,
     password: password,
   });
-  if (role === 'admin') {
-    Roles.createRole(role, { unlessExists: true });
-    Roles.addUsersToRoles(userID, 'admin');
-  }
+  Roles.createRole(role, { unlessExists: true });
+  Roles.addUsersToRoles(userID, role);
 };
 
+Accounts.onCreateUser((options, user) => {
+  // Assign the isActive field a default value
+  const userWithActiveStatus = {
+    ...user,
+    isActive: true, // Add new properties
+  };
+
+  return userWithActiveStatus;
+});
+
+Accounts.validateLoginAttempt((attempt) => {
+  if (attempt.user && attempt.user.isActive === false) {
+    throw new Meteor.Error('account-disabled', 'Your account has been disabled.');
+  }
+  return true;
+});
+
 if (Meteor.users.find().count() === 0) {
+  console.log('------------------- insert default Accounts -------------------');
   if (Meteor.settings.defaultAccounts) {
     console.log('Creating the default user(s)');
     Meteor.settings.defaultAccounts.forEach(({ email, password, role }) => createUser(email, password, role));
