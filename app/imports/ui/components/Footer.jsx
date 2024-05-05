@@ -9,7 +9,7 @@ const Footer = () => (
     <Container>
       <Row>
         <Col className="text-center">
-          Fit Journey
+          FitJourney
           {' '}
           <br />
           By John, Tiffany, Loelle, Mai

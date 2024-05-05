@@ -27,16 +27,11 @@ const NavBar = () => {
         <Navbar.Toggle id={ComponentIDs.navBar} />
         <Navbar.Collapse id={ComponentIDs.navBar}>
           <Nav className="me-auto">
-            {currentUser ? (
-              <NavDropdown id={ComponentIDs.navBarCivicEngagementItem} title="Workout Log" style={{ marginRight: '1em' }}>
-                <NavDropdown.Item as={NavLink} to="/workoutlog">
-                  <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to="/graphs">
-                  <Nav.Link id={ComponentIDs.navBarToGraphs} as={NavLink} to="/graphs" key="graphs" style={{ color: 'black' }}>Graphs</Nav.Link>
-                </NavDropdown.Item>
-              </NavDropdown>
-            ) : ''}
+            {currentUser ? ([
+              <Nav.Link id={ComponentIDs.navBarToWorkoutLog} as={NavLink} to="/workoutlog" key="workoutlog" style={{ color: 'black' }}>Workout Log</Nav.Link>,
+              <Nav.Link id={ComponentIDs.navBarToDashboard} as={NavLink} to="/dashboard" key="dashboard" style={{ color: 'black' }}>Goals</Nav.Link>,
+              <Nav.Link as={NavLink} to="/graphs" key="graphs" style={{ color: 'black' }}>Graphs</Nav.Link>,
+            ]) : ''}
           </Nav>
 
           <Nav className="justify-content-end">

@@ -14,6 +14,7 @@ import SignIn from '../pages/SignIn';
 import AdminPanel from '../pages/AdminPanel';
 import NotAuthorized from '../pages/NotAuthorized';
 import WorkoutLog from '../pages/WorkoutLog';
+import Dashboard from '../pages/Dashboard';
 import Graphs from '../pages/Graphs';
 import CommunityPage from '../pages/CommunityPage';
 import Dalle3 from '../pages/Dalle3';
@@ -27,6 +28,7 @@ import Mapping from '../pages/Mapping';
 import Model from '../pages/Model';
 import AddModCard from '../pages/AddModCard';
 import EditLog from '../pages/EditLog';
+import CreateGoal from '../pages/CreateGoal';
 
 const App = () => {
   const { ready } = useTracker(() => {
@@ -46,6 +48,7 @@ const App = () => {
           <Route path="/signout" element={<SignOut />} />
           <Route path="/adminpanel" element={<AdminProtectedRoute ready={ready}><AdminPanel /></AdminProtectedRoute>} />
           <Route path="/workoutlog" element={<ProtectedRoute><WorkoutLog /></ProtectedRoute>} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/graphs" element={<ProtectedRoute><Graphs /></ProtectedRoute>} />
           <Route path="/survey" element={<ProtectedRoute><Survey /></ProtectedRoute>} />
           <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
@@ -55,6 +58,7 @@ const App = () => {
           <Route path="/editprofile" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
           <Route path="/addprofile" element={<ProtectedRoute><AddProfile /></ProtectedRoute>} />
           <Route path="/createlog" element={<ProtectedRoute><CreateLog /></ProtectedRoute>} />
+          <Route path="/creategoal" element={<ProtectedRoute><CreateGoal /></ProtectedRoute>} />
           <Route path="/addsurvey" element={<ProtectedRoute><AddSurvey /></ProtectedRoute>} />
           <Route path="/addmodcard" element={<ProtectedRoute><AddModCard /></ProtectedRoute>} />
           <Route path="/model" element={<ProtectedRoute><Model /></ProtectedRoute>} />

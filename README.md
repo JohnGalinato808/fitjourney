@@ -78,7 +78,7 @@ Wiki Page (https://github.com/JohnGalinato808/fitjourney/wiki)
 - John Galinato
     - Completed: - Assisted with the completion of the Dashboard page. Created EditGoal function for user to edit their self-made goal as well as their goal deadline. In addition, I have created the CreateGoal function which allows users to create new goals that is then added to the database. This function will bring user to a new page where they must input an initial goal completion date with time of day, as well as a description of their goal. Finally, assisted with debugging the Dashboard page in attempt to have the page pull data from the database to be displayed onto the page.
 - Loelle Lam
-    - Completed:
+    - Completed: The goals feature is now fully operational, allowing users to set and track their goals. Users can see goals they created, each goal’s deadline, and mark the goals as completed. I resolved the issue in the goal component that caused the goals page to crash. Users can now edit and delete their goals from within the goals page as well.
 - Mai Abe
     - Completed: - Completed Admin Panel page. The page retrieves and displays corresponding roles and ability to toggle the accessibility for each user. Made the Admin Panel page accessible only to admin users. Created toggle button to control accessibility, where it would alert the admin user each time the active/inactive status of a user was changed. The active/inactive status of a user (accessibility) is only modifiable for users with 'user' role. Users with 'admin' role are always active. Once a user was limited accessibility, an error message, 'Your account has been disabled', will be displayed on an attempt to login. 
 - Tiffany Ngo
@@ -117,7 +117,8 @@ Wiki Page (https://github.com/JohnGalinato808/fitjourney/wiki)
           - Vulnerabilities as a result of fuzz testing.
           - Prevention of security penetrations.
 - Loelle Lam
-  - In Progress: Began implementation of 'goal' feature, to be further developed, analyzed, and optimized. Timeline includes the completion of 'goal' feature and all related analysis by 20240502.
+  - Completed: Created the goal collection, goal component, and goal page. Updated the navbar to include the dashboard.
+  - Next: The goal feature is to be further developed, allowing users to edit their goals. Any edits should be saved and reflected in the database. Users should also be able to remove goals.
 - Mai Abe
   - Completed: Fixed the user insertion function issues on a user SignUp. Removed the textCheck function as it is not relevant for our purpose to create and store user account information. On signup, all users are assigned the 'user' role. Created a User role in addition to the Admin role. Created an Admin Panel page for listing all users in the db. (in progress) 
   - Next: Create activation/deactivation functionality for users for access controlling. 

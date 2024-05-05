@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Profiles } from '../../api/profile/profile';
 import { WorkoutLogs } from '../../api/workoutlog/workoutlog';
+import { Goal } from '../../api/goal/goal';
 import { Comments } from '../../api/comment/comment';
 import { Surveys } from '../../api/survey/survey';
 import { Votes } from '../../api/vote/vote';
@@ -23,6 +24,13 @@ Meteor.publish(Profiles.userPublicationName, function () {
 Meteor.publish(WorkoutLogs.userPublicationName, function () {
   if (this.userId) {
     return WorkoutLogs.collection.find();
+  }
+  return this.ready();
+});
+
+Meteor.publish(Goal.userPublicationName, function () {
+  if (this.userId) {
+    return Goal.collection.find();
   }
   return this.ready();
 });
