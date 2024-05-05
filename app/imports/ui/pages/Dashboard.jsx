@@ -70,7 +70,7 @@ const Dashboard = () => {
               <Form.Group controlId="searchBar">
                 <Row style={{ margin: 0, padding: '2% 0' }}>
                   <Col xs={12}>
-                    <Form.Control type="text" placeholder="Search by Title or Description" value={searchTerm} onChange={handleSearchChange} />
+                    <Form.Control type="text" placeholder="Search by Description" value={searchTerm} onChange={handleSearchChange} />
                   </Col>
                 </Row>
               </Form.Group>
@@ -78,9 +78,11 @@ const Dashboard = () => {
             <Table hover className="workoutlog-table">
               <thead>
                 <tr>
+                  <th>&nbsp;</th>
                   <th>Goal</th>
-                  <th>Description</th>
-                  <th>Status</th>
+                  <th>Deadline</th>
+                  <th>&nbsp;</th>
+                  <th>&nbsp;</th>
                 </tr>
               </thead>
               {paginatedLogs.map((goal) => <Goal key={goal._id} goal={goal} />)}

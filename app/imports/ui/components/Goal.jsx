@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import swal from 'sweetalert';
 import { Form, Button } from 'react-bootstrap';
 import { Goal } from '../../api/goal/goal';
 
@@ -22,6 +23,7 @@ const GoalComponent = ({ goal }) => {
     if (goal) {
       // If goal exists, update it
       Goal.collection.update(goal._id, { $set: goalData });
+      swal('Success', 'Goal updated successfully', 'success');
     } else {
       // If goal does not exist, insert it
       Goal.collection.insert(goalData);
@@ -43,7 +45,7 @@ const GoalComponent = ({ goal }) => {
     <tbody>
       <tr>
         <td>
-          <Form onSubmit={handleSubmit}>
+          <Form>
             <Form.Check
               type="checkbox"
               checked={status}
@@ -60,8 +62,8 @@ const GoalComponent = ({ goal }) => {
           />
         </td>
         <td>{deadline.toLocaleString()}</td>
-        <td><Button>Save</Button></td>
-        <td><Button>Delete</Button></td>
+        <td><Button onClick={handleSubmit}>Save</Button></td>
+        <td><Button onClick={handleSubmit}>Delete</Button></td>
       </tr>
     </tbody>
   );
